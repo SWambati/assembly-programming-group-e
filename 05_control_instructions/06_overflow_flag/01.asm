@@ -1,7 +1,8 @@
 ; JO → Jump if Overflow
 section .data
-    msg_ov db "Overflow occurred (OF=1)",10,0
-    msg_noov db "No overflow (OF=0)",10,0
+    msg_ov db "Hello. This is Sylvia Wambati, student number 159819",10
+    len_equal equ $ - msg_ov
+    msg_noov db "No overflow (OF=0)",10
 
 section .text
     global _start
@@ -10,7 +11,7 @@ _start:
     add ax,1       ; causes signed overflow
     jo overflow
 
-    mov ecx, msg_noov
+    mov ecx, msg_ov
     jmp print
 
 overflow:
@@ -19,7 +20,7 @@ overflow:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,40
+    mov edx,len_equal
     int 0x80
 
     mov eax,1

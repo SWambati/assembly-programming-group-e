@@ -1,7 +1,8 @@
 ; JLE / JNG → Jump if Less or Equal
 section .data
-    msg_le db "AX <= BX (Signed Less or Equal)",10,0
-    msg_greater db "AX > BX (Greater)",10,0
+    msg_le db "Hello, this is Sylvia Wambati, student number 159819",10
+    len_equal equ $ - msg_le
+    msg_greater db "AX > BX (Greater)",10
 
 section .text
     global _start
@@ -11,7 +12,7 @@ _start:
     cmp ax,bx
     jle le_label
 
-    mov ecx, msg_greater
+    mov ecx, msg_le
     jmp print
 
 le_label:
@@ -20,7 +21,7 @@ le_label:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,40
+    mov edx, len_equal
     int 0x80
 
     mov eax,1

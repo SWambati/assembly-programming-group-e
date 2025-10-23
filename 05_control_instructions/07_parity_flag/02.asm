@@ -2,8 +2,9 @@
 
 ; jnp.asm
 section .data
-    msg_even db "Parity Even (PF=1)",10,0
-    msg_odd db "Parity Odd (PF=0)",10,0
+    msg_even db "Hello. This is Sylvia Wambati, student number 159819",10
+    len_equal equ $ - msg_even
+    msg_odd db "Parity Odd (PF=0)",10
 
 section .text
     global _start
@@ -21,7 +22,7 @@ odd:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,40
+    mov edx,len_equal
     int 0x80
 
     mov eax,1

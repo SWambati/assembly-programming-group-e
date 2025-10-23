@@ -1,8 +1,9 @@
 ; JB / JNAE → Jump if Below
 
 section .data
-    str_below     db "AX < BX (Below)",10,0
-    str_not_below db "AX >= BX (Not Below)",10,0
+    str_below     db "Hello, this is Sylvia Wambati, student number: 159819",10
+    len_equal equ $ - str_below
+    str_not_below db "AX >= BX (Not Below)",10
 
 section .text
     global _start
@@ -12,7 +13,7 @@ _start:
     cmp ax,bx
     jb below
 
-    mov ecx, str_not_below
+    mov ecx, str_below
     jmp print
 
 below:
@@ -21,7 +22,7 @@ below:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,30
+    mov edx,len_equal
     int 0x80
 
     mov eax,1

@@ -1,8 +1,9 @@
 ; JAE / JNB → Jump if Above or Equal
 
 section .data
-    str_ae db "AX >= BX (Above or Equal)",10,0
-    str_below db "AX < BX (Below)",10,0
+    str_ae db "Hello, this is Sylvia Wambati, Student Number: 159819",10
+    len_equal equ $ - str_ae
+    str_below db "AX < BX (Below)",10
 
 section .text
     global _start
@@ -12,7 +13,7 @@ _start:
     cmp ax,bx
     jae above_equal
 
-    mov ecx, str_below
+    mov ecx, str_ae
     jmp print
 
 above_equal:
@@ -21,7 +22,7 @@ above_equal:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,30
+    mov edx,len_equal
     int 0x80
 
     mov eax,1

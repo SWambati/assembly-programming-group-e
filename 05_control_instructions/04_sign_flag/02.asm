@@ -1,8 +1,9 @@
 ; JNS → Jump if Not Sign
 
 section .data
-    msg_neg db "Negative (SF=1)",10,0
-    msg_nonneg db "Non-Negative (SF=0)",10,0
+    msg_neg db "Hello. This is Sylvia Wambati, student number 159819",10
+    len_equal equ $ - msg_neg
+    msg_nonneg db "Non-Negative (SF=0)",10
 
 section .text
     global _start
@@ -15,12 +16,12 @@ _start:
     jmp print
 
 nonneg:
-    mov ecx, msg_nonneg
+    mov ecx, msg_neg
 
 print:
     mov eax,4
     mov ebx,1
-    mov edx,40
+    mov edx,len_equal
     int 0x80
 
     mov eax,1

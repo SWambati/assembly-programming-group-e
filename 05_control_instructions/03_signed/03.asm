@@ -1,7 +1,8 @@
 ; JL / JNGE → Jump if Less
 section .data
-    msg_less db "AX < BX (Signed Less)",10,0
-    msg_not_less db "AX >= BX (Not Less)",10,0
+    msg_less db "Hello. This is Sylvia Wambati, student number 159819",10
+    len_equal equ $ - msg_less
+    msg_not_less db "AX >= BX (Not Less)",10
 
 section .text
     global _start
@@ -11,7 +12,7 @@ _start:
     cmp ax,bx
     jl less
 
-    mov ecx, msg_not_less
+    mov ecx, msg_less
     jmp print
 
 less:
@@ -20,7 +21,7 @@ less:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,40
+    mov edx,len_equal
     int 0x80
 
     mov eax,1

@@ -1,8 +1,9 @@
 ; JBE / JNA → Jump if Below or Equal
 
 section .data
-    str_be db "AX <= BX (Below or Equal)",10,0
-    str_above db "AX > BX (Above)",10,0
+    str_be db "Hello, this is Sylvia Wambati, Student Number: 159819",10
+    len_equal equ $ - str_be
+    str_above db "AX > BX (Above)",10
 
 section .text
     global _start
@@ -12,7 +13,7 @@ _start:
     cmp ax,bx
     jbe below_equal
 
-    mov ecx, str_above
+    mov ecx, str_be
     jmp print
 
 below_equal:
@@ -21,7 +22,7 @@ below_equal:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,30
+    mov edx,len_equal
     int 0x80
 
     mov eax,1

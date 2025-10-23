@@ -1,7 +1,8 @@
 ; JA / JNBE → Jump if Above
 section .data
-    str_above db "AX > BX (Above)",10,0
-    str_not_above db "AX <= BX (Not Above)",10,0
+    str_above db "Hello, this is Sylvia Wambati, Student Number: 159819",10
+    len_equal equ $ - str_above
+    str_not_above db "AX <= BX (Not Above)",10
 
 section .text
     global _start
@@ -11,7 +12,7 @@ _start:
     cmp ax, bx
     ja above
 
-    mov ecx, str_not_above
+    mov ecx, str_above
     jmp print
 
 above:
@@ -20,7 +21,7 @@ above:
 print:
     mov eax,4
     mov ebx,1
-    mov edx,30
+    mov edx,len_equal
     int 0x80
 
     mov eax,1
